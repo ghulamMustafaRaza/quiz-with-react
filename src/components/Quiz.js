@@ -47,7 +47,6 @@ class Quiz extends Component{
             this.setState ({numberOfQuestions: result.questions.length});
             console.log(result)
             console.log(result.questions.length)
-            this.props.onload(result.title)
         }.bind(this))
     }
     handleReset() {
@@ -84,30 +83,35 @@ class Quiz extends Component{
         const {quiz, index, numberOfQuestions, score} = this.state
         return (
             <div>
-            {this.state.completed ?
-                <div className="clearfix">
-                    <p>Congratulation, you finish the quiz</p>
-                    <h2 className="text-center">Total Questin is {numberOfQuestions}</h2>
-                    <h2 className="text-center">Your score is {score}</h2>
-                    <h2 className="text-center">Your Percentage is {100/numberOfQuestions*score}%</h2>
-                    <div className="btn btn-success pull-right" onClick={this.handleReset}>
-                        Retake Quiz
+                <div className="page-header"><h2>
+                    {this.state.quiz.title}    
+                </h2></div>
+                <div className="jumbotron">
+                {this.state.completed ?
+                    <div className="clearfix">
+                        <p>Congratulation, you finish the quiz</p>
+                        <h2 className="text-center">Total Questin is {numberOfQuestions}</h2>
+                        <h2 className="text-center">Your score is {score}</h2>
+                        <h2 className="text-center">Your Percentage is {100/numberOfQuestions*score}%</h2>
+                        <div className="btn btn-success pull-right" onClick={this.handleReset}>
+                            Retake Quiz
+                        </div>
                     </div>
+                :
+                    <div>
+                    <h2>Question {index + 1} of {numberOfQuestions}</h2>
+                    {quiz.questions && index < quiz.questions.length ?
+                    <Question
+                        question={quiz.questions[index]}
+                        index={index}
+                        onAnswerSelected={(event) => this.handleAnswerSelected(event)}
+                        onSubmit={() => this.handleSubmit()}
+                        disable = {this.state.disable}
+                    />
+                    : ''}
+                    </div>
+                }
                 </div>
-            :
-                <div>
-                <h2>Question {index + 1} of {numberOfQuestions}</h2>
-                {quiz.questions && index < quiz.questions.length ?
-                <Question
-                    question={quiz.questions[index]}
-                    index={index}
-                    onAnswerSelected={(event) => this.handleAnswerSelected(event)}
-                    onSubmit={() => this.handleSubmit()}
-                    disable = {this.state.disable}
-                />
-                : ''}
-                </div>
-            }
             </div>
         )
     }
