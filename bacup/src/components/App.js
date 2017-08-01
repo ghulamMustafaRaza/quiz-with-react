@@ -18,7 +18,7 @@ class App extends Component {
               <Link className="nav-link active" to="/">Quiz</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/addQuiz">Add A Question</Link>
+              <Link className="nav-link" href="#" to="/addQuiz">Add A Question</Link>
             </li>
           </ul>
             <Route exact path="/" component={Quiz}/>

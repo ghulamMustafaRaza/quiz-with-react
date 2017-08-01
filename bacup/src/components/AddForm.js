@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery'
-import axios from 'axios'
 
 class AddForm extends React.Component{
     constructor(props){
@@ -17,35 +16,32 @@ class AddForm extends React.Component{
             answers: []
         };
         var answers = document.getElementsByClassName('answers');
-
         for(var i=0; i<answers.length;i++){
             obj.answers.push({
                 point: answers[i].querySelector(".point").value,
                 label: answers[i].querySelector(".option").value,
             })
         }
-        obj.answers =  JSON.stringify(obj.answers);
-        $.post('http://localhost:8000/set-data', obj, ()=>{})
-    //     $.getJSON("quiz.json",data=>{
-    //         console.log(data)
-    //         this.setState({oldFile: data})
-    //         this.setState({newFile: data})
-    //         console.log(this.state.newFile)
-    //         console.log(this.state.oldFile)
-    //         console.log(data)
-    //         this.state.newFile.questions.push(obj)
-    //         console.log(this.state.newFile)
-    //         console.log(data)
-    //     });
-    //     $.ajax({
-    //         type: "GET",
-    //         dataType : 'json',
-    //         async: false,
-    //         url: 'writeJSON.php',
-    //         data: { data: JSON.stringify(this.state.newFile) },
-    //         success: function () {alert("Thanks!"); },
-    //         failure: function() {alert("Error!");}
-    //     });
+        $.getJSON("quiz.json",data=>{
+            console.log(data)
+            this.setState({oldFile: data})
+            this.setState({newFile: data})
+            console.log(this.state.newFile)
+            console.log(this.state.oldFile)
+            console.log(data)
+            this.state.newFile.questions.push(obj)
+            console.log(this.state.newFile)
+            console.log(data)
+        });
+        $.ajax({
+            type: "GET",
+            dataType : 'json',
+            async: false,
+            url: 'writeJSON.php',
+            data: { data: JSON.stringify(this.state.newFile) },
+            success: function () {alert("Thanks!"); },
+            failure: function() {alert("Error!");}
+        });
     }
     render(){
         return(

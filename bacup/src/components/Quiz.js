@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-// import $ from "jquery"
-import axios from 'axios'
+import $ from "jquery"
+
 
 const Question = ({
   question,
@@ -30,7 +30,6 @@ class Quiz extends Component{
         super(props)
         this.state = {
             quiz: {},
-            loading: true,
             index:0,
             numberOfQuestions:0,
             score: 0,
@@ -43,26 +42,19 @@ class Quiz extends Component{
         this.handleReset = this.handleReset.bind(this)
     }
     componentDidMount(){
-        axios.get('http://localhost:8000/get-data').then(({data})=>{
-            var result = data
+        $.getJSON('./quiz.json', function(result){
+            this.setState ({quiz: result});
+            this.setState ({numberOfQuestions: result.questions.length});
             console.log(result)
-            if(result){
-            this.setState ({
-                quiz: result,
-                numberOfQuestions: result.questions.length,
-                loading: false
-            });
-            // console.log(result)
             console.log(result.questions.length)
-            }
-        })
+        }.bind(this))
     }
     handleReset() {
         this.setState({
             index:0,
             score: 0,
             answers:[],
-            completed: false,
+            completed: false
         })
         console.log(this.state)
     }
@@ -73,7 +65,7 @@ class Quiz extends Component{
             this.setState({'completed': true})
             let score = this.state.score || 0
             this.state.answers.map((answer, i) => (
-            score = score + Number(this.state.quiz.questions[i].answers[answer].point)
+            score = score + this.state.quiz.questions[i].answers[answer].point
             ))
             this.setState({'score': score})
         }
@@ -95,9 +87,7 @@ class Quiz extends Component{
                     {this.state.quiz.title}    
                 </h2></div>
                 <div className="jumbotron">
-                {this.state.loading?
-                    <h2>loading...</h2>
-                :this.state.completed ?
+                {this.state.completed ?
                     <div className="clearfix">
                         <p>Congratulation, you finish the quiz</p>
                         <h2 className="text-center">Total Questin is {numberOfQuestions}</h2>

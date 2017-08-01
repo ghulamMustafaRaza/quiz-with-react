@@ -30,7 +30,7 @@ class Add extends React.Component{
     render() {
         return(
             <div>
-                {this.state.correct?<AddForm/>
+                {/*this.state.correct*/true?<AddForm/>
                 :
                 <div>
                     <div className="page-header">

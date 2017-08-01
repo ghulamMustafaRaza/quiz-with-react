@@ -1,0 +1,89 @@
+{
+  "title": "Math Quiz",
+  "questions": [
+    {
+      "question": "5 * 4 =",
+      "answers": [
+        {
+          "point": 1,
+          "label": "20"
+        },
+        {
+          "point": 0,
+          "label": "10"
+        },
+        {
+          "point": 0,
+          "label": "30"
+        },
+        {
+          "point": 0,
+          "label": "25"
+        }
+      ]
+    },
+    {
+      "question": "8 / 2 =",
+      "answers": [
+        {
+          "point": 1,
+          "label": "4"
+        },
+        {
+          "point": 0,
+          "label": "10"
+        },
+        {
+          "point": 0,
+          "label": "30"
+        },
+        {
+          "point": 0,
+          "label": "25"
+        }
+      ]
+    },
+    {
+      "question": "5 + 4 =",
+      "answers": [
+        {
+          "point": 1,
+          "label": "9"
+        },
+        {
+          "point": 0,
+          "label": "10"
+        },
+        {
+          "point": 0,
+          "label": "30"
+        },
+        {
+          "point": 0,
+          "label": "25"
+        }
+      ]
+    },
+    {
+      "question": "5 - 4 =",
+      "answers": [
+        {
+          "point": 1,
+          "label": "1"
+        },
+        {
+          "point": 0,
+          "label": "10"
+        },
+        {
+          "point": 0,
+          "label": "30"
+        },
+        {
+          "point": 0,
+          "label": "25"
+        }
+      ]
+    }
+  ]
+}
